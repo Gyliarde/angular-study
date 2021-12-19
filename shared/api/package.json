@@ -1,0 +1,16 @@
+{
+  "name": "study",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Gyliarde",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.2",
+    "global": "^4.4.0",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "dev": "nodemon index.js"
+  }
+}
