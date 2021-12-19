@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app='helloWorld' lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+
+    <script src="../../shared/lib/angular-1.4.0/angular.js"></script>
+    
+    <!-- Angular trabalho com modulos -->
+    <script>
+        // Criar um modulo
+        angular.module('helloWorld',[]);
+
+        // Localizando o Modulo e criando um controller
+        angular.module('helloWorld').controller('helloWorldController', function($scope) {
+            $scope.message = 'Hello  World!';
+        });
+    </script>
+</head>
+
+
+<body ng-controller= "helloWorldController">
+    {{message}}
+</body>
+</html>
+
+
+<!-- 
+  ng-app = Define as fronteiras da aplicação
+  ng-controller = Posso ter varias views associadas ao mesmo controller 
+->

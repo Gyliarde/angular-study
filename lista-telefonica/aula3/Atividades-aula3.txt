@@ -1,0 +1,10 @@
+ aula 2
+  aplicar ng class  ok
+  selecionado e negripto por checkbox ok
+  apagar contatos aplicando filtro ok
+  disable em apagar contatos quando nao tem selecionado ok
+  aplicar ng-style nos contatos dinamicamente ok
+  ng-show no apagar-contatos ok
+  ng-show na table ok
+  incluir um rodape ok 
+  incluir rodape como componente via ng-include ok

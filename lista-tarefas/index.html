@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html ng-app='todolist' lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+    <script src="../shared/lib/angular-1.4.0/angular.js"></script>
+
+    <script>
+        // create a module
+        angular.module('todolist',[]);
+
+        // Locate and create contoller in module todo list
+        angular.module('todolist').controller('todolistController', function($scope){
+            $scope.app = 'Hello world - todo List';
+            $scope.tasks = [
+                { desc : "Estudar", hour : "07:30" , color : 'yellow' },
+                { desc : "Trabalhar", hour : "08:00" , color: 'red' },
+                { desc : "Jogar", hour : "20:00"  , color: 'green' },
+            ];
+            $scope.days = [
+                { desc: "Domingo" , value: 1 }, 
+                { desc: "Segunda" , codigo: 2},
+                { desc: "Terça" , codigo: 3},
+            ];
+            $scope.adicionarTarefa = function(task) {
+                $scope.tasks.push(angular.copy(task))
+                delete $scope.task;
+                $scope.taskForm.$setPristine();
+            }
+            $scope.isTaskSelected = function(tasks) {
+                return tasks.some(task => task.selected)
+            },
+            $scope.removeTasks = function(tasks) {
+                $scope.tasks = tasks.filter((task) => { if (!task.selected) return task } )
+            },
+            $scope.selected = 'selected',
+            $scope.textBold = 'text-bold'
+        });
+    </script>
+
+    <style>
+        .jumbotron {
+            width: 500px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .table {
+            margin-top: 20px
+        }
+        .form-control {
+            margin-bottom : 5px;
+        }
+        .selected {
+            background-color: yellow;
+        }
+        .text-bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body ng-controller = 'todolistController' >
+    <div class="jumbotron">
+        <!-- double mustache to interpolate scope variable -->
+        <h3>{{app}}</h3>
+        {{tasks }}
+        <table  ng-show='tasks.length > 0' class="table">
+            <tr>
+                <th></th>
+                <th>descrição</th>
+                <th>hora</th>
+                <th>Dia da semana</th>
+                <th></th>
+            </tr>
+            <!-- loop for with ng-repeat -->
+            <tr ng-class="{'selected textBold' :task.selected}" ng-repeat="task in tasks">
+                <td><input type="checkbox" ng-model="task.selected"></td>
+                <td>{{task.desc}}</td>
+                <td>{{task.hour}}</td>
+                <td>{{task.dayWeek.desc}}</td>
+                <td><div style="width:20px; height: 20px; align-items: center;" ng-style="{'background-color': task.color }" ></div></td>
+            </tr>
+        </table>
+        <hr>
+        <form name="taskForm">
+            <!-- ng-model to creat a two way databind -->
+            <input class="form-control" type="text" name="desc" ng-model="task.desc" placeholder="descrição"  ng-required="true" ng-Minlength="10"/>
+            <input class="form-control" type="text" name="hour" ng-model="task.hour" placeholder="Horas" ng-required="true" ng-pattern="/^\d{2}:\d{2}$/"> 
+            <select class="form-control" ng-model="task.dayWeek" ng-options="day.desc for day in days" name="" id="">
+                <option value="">Selecione um dia da semana </option>
+            </select>
+        </form>
+
+        <div ng-show="taskForm.desc.$error.required && taskForm.desc.$dirty" class="alert alert-danger" >
+            Por favor, preencha a descrição
+        </div>
+        <div ng-show="taskForm.desc.$error.minlength" class="alert alert-danger" >
+            O campo nome deve ter no mínimo 10 caracteres;
+        </div>
+
+        <div ng-show="taskForm.hour.$error.required && taskForm.hour.$dirty" class="alert alert-danger" >
+            Por favor, preencha o Hora
+        </div>
+        <div ng-show="taskForm.hour.$error.pattern" class="alert alert-danger" >
+            O campo Hora deve ter o formato HH:MM
+        </div>
+
+        <!-- g-click to call funtion in scope -->
+        <button class="btn btn-primary btn-block" ng-disabled='!task.desc || !task.hour' ng-click="adicionarTarefa(task)" > Adicionar Contato </button>
+        <button class="btn btn-danger btn-block" ng-if="isTaskSelected(tasks)" ng-click="removeTasks(tasks)"> Apagar Contatos </button>    
+    </div>
+</body>
+</html>

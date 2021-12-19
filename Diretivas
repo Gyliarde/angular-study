@@ -1,0 +1,82 @@
+
+ #Diretivas
+
+ Diretivas são extensões da linguagem HTML que permitem a implementação de novos comportamentos, de forma declarativa
+
+ ng- significa Angular 
+ 
+ ng-app 
+  Define as fronteiras da aplicação
+
+---
+ng-controller 
+  Vincula um elemento da View ao Controller. 
+  Posso ter varias views associadas ao mesmo controller.
+
+----
+ng-bind - interpolação
+  Substitui um elemento por uma expressão 
+  {{}} = bind por interpolação
+----
+ngRepeat
+  Iterando sobre itens de uma coleção
+
+---
+ngModel 
+  Vinculando uma propriedade ao $scope
+  Pega um item da view e e seta no $scope
+  Ex : Inputs, selects e text Areas
+
+---
+ngClick
+  Atribui um comportamento ao evento 
+
+---
+ngDisabled  
+  Disabilita um componente por meio de uma expressao boleana
+   
+---
+ngOptions
+  Renderiza as opções de um select  
+
+----
+ngClass e ngStyle
+Aplicando Css dinamicamente
+
+---
+ngShow, ngHide -> Apenas na visibilidade com display none 
+ngIf -> interage com a Dom tirando e removendo elemento
+Mostrar elemento de forma condicional
+
+----
+ngInclude
+exibindo um elemento dinamicamente
+
+---
+ngRequired
+  Campo obrigatorio 
+
+  $valid mostra estado atual do formulario
+  $invalid mostra estado atual do formulario
+  $pristine estado inicial dor form antes de ser tocado
+  $dirty estado após o componente ser alteado. Após $dirty não volta a ser $pristine
+  $error
+
+---
+Filtros
+
+transformam o resultado de uma expressão, realizando operações como a formatação
+de data, conversão de moeda e a ordenação de array.
+
+uppercase
+lowercase
+filter
+orderby
+currency
+number
+limitTo
+
+   
+
+
+    

@@ -1,0 +1,11 @@
+1 - Criar servidor para retornar contatos
+2 - Injetar $http
+3 - Criar funcao para carregar contatos
+4 - carregar operador via ajax
+
+$htt.get().sucess( callback )
+
+5 - Substituir Push de contato para $http.post
+6 - Tratar , .error
+
+7 - Add Headers Cors.
